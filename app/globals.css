@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Brand palette taken from the Mudra / MDR logo: royal blue + golden orange.
+  Values are "R G B" so Tailwind opacity modifiers (bg-gold/15) keep working.
+  Light values live on :root, dark values on .dark.
+*/
+:root {
+  color-scheme: light;
+  --ink: 244 247 253; /* page background */
+  --ink-2: 233 240 252; /* alternate section / inset background */
+  --ink-3: 224 233 248; /* ticker + footer */
+  --surface: 255 255 255; /* cards */
+  --fg: 10 24 58; /* main text */
+  --mute: 78 94 134; /* secondary text */
+  --line: 10 24 58; /* borders and dividers (used with /10, /20 ...) */
+  --gold: 245 176 46; /* golden orange, fills and buttons */
+  --gold-ink: 150 88 4; /* gold used as text on light backgrounds */
+  --gold-light: 255 210 122;
+  --gold-dark: 184 111 11;
+  --blue: 47 123 255; /* logo blue */
+  --blue-ink: 27 82 214; /* blue used as text */
+  --blue-deep: 30 79 214;
+  --blue-light: 127 176 255;
+  --hero-top: 205 223 255;
+}
+
+.dark {
+  color-scheme: dark;
+  --ink: 6 14 36;
+  --ink-2: 10 22 54;
+  --ink-3: 4 9 24;
+  --surface: 14 27 64;
+  --fg: 232 238 252;
+  --mute: 156 171 207;
+  --line: 255 255 255;
+  --gold-ink: 245 176 46;
+  --blue-ink: 120 170 255;
+  --hero-top: 16 48 130;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid rgb(var(--blue));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1200px] px-6;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink;
+  }
+  .h2 {
+    @apply font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.12] tracking-tight text-balance;
+  }
+  .lead {
+    @apply max-w-[640px] text-lg leading-relaxed text-mute;
+  }
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full border border-transparent px-7 text-base font-semibold transition duration-200;
+  }
+  .btn-gold {
+    @apply bg-gradient-to-br from-gold-light to-gold text-[#1A1304] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(245,176,46,0.4)];
+  }
+  .btn-blue {
+    @apply bg-gradient-to-br from-blue to-blue-deep text-white hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(47,123,255,0.4)];
+  }
+  .btn-ghost {
+    @apply border-line/25 text-fg hover:bg-line/10;
+  }
+  .card {
+    @apply rounded-[20px] border border-line/10 bg-surface shadow-[0_10px_30px_rgba(10,24,58,0.06)] dark:shadow-none;
+  }
+  .label {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-mute;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .glass {
+    @apply rounded-[14px] border border-line/10 bg-surface/80 backdrop-blur-md;
+  }
+  .hero-bg {
+    background: radial-gradient(ellipse at 50% 0%, rgb(var(--hero-top)) 0%, rgb(var(--ink)) 62%);
+  }
+  .grid-floor {
+    background-image:
+      linear-gradient(rgb(var(--blue) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--blue) / 0.3) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .coin-face {
+    @apply absolute inset-0 flex items-center justify-center rounded-full;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: radial-gradient(circle at 30% 25%, #ffe2a0, #f5b02e 48%, #b86f0b 100%);
+    box-shadow:
+      inset 0 0 0 9px rgba(255, 255, 255, 0.16),
+      inset 0 0 0 11px rgba(110, 60, 0, 0.35),
+      0 30px 80px rgba(245, 176, 46, 0.3);
+  }
+  .coin-face.back {
+    transform: rotateY(180deg);
+  }
+  /* headline accent: logo blue sliding into logo gold */
+  .shimmer {
+    background: linear-gradient(
+      100deg,
+      rgb(var(--blue-ink)) 0%,
+      rgb(var(--gold)) 50%,
+      rgb(var(--blue-ink)) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

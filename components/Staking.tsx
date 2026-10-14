@@ -1,0 +1,113 @@
+"use client";
+
+import { useState } from "react";
+import Reveal from "./Reveal";
+import { APP_URL, stakeAmounts, tiers } from "@/lib/content";
+
+const fmt = (n: number) =>
+  n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+export default function Staking() {
+  const [tier, setTier] = useState(1);
+  const [amount, setAmount] = useState(1000);
+
+  const t = tiers[tier];
+  const yearly = (amount * t.apy) / 100;
+  const daily = yearly / 365;
+
+  return (
+    <section id="staking" className="bg-gradient-to-b from-ink via-ink-2 to-ink py-20 md:py-28">
+      <div className="wrap flex flex-col gap-14">
+        <Reveal className="flex max-w-[760px] flex-col gap-4">
+          <span className="eyebrow">Staking program</span>
+          <h2 className="h2">Stake DMDR. Collect rewards every day.</h2>
+          <p className="lead">
+            Pick a term, choose an amount and see what you could earn. Flexible staking has no lock-in.
+            Longer terms are designed to pay more.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <div className="flex flex-wrap items-stretch gap-10 rounded-[20px] border border-line/10 bg-gradient-to-br from-surface to-ink-2 shadow-[0_20px_60px_rgba(10,24,58,0.08)] dark:shadow-none p-5 sm:p-8 lg:p-10">
+            <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-7">
+              <div className="flex flex-col gap-3.5">
+                <span className="label">1. Choose a term</span>
+                <div className="flex flex-wrap gap-3">
+                  {tiers.map((x, i) => (
+                    <button
+                      key={x.label}
+                      type="button"
+                      onClick={() => setTier(i)}
+                      aria-pressed={tier === i}
+                      className={`min-w-0 flex-[1_1_150px] rounded-2xl border p-[18px] text-left transition ${
+                        tier === i
+                          ? "border-gold bg-gold/10"
+                          : "border-line/10 bg-ink-2 hover:border-gold/50"
+                      }`}
+                    >
+                      <div className="font-display text-[17px] font-bold">{x.label}</div>
+                      <div className="num mt-1 text-sm font-semibold text-gold-ink">{x.apy}% APY</div>
+                      <div className="mt-0.5 text-[13px] text-mute">{x.lock}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3.5">
+                <span className="label">2. Choose an amount (DMDR)</span>
+                <div className="flex flex-wrap gap-3">
+                  {stakeAmounts.map((a) => (
+                    <button
+                      key={a}
+                      type="button"
+                      onClick={() => setAmount(a)}
+                      aria-pressed={amount === a}
+                      className={`num rounded-full border px-5 py-2.5 font-semibold transition ${
+                        amount === a
+                          ? "border-gold bg-gold/10"
+                          : "border-line/10 bg-ink-2 hover:border-gold/50"
+                      }`}
+                    >
+                      {a.toLocaleString("en-US")}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <p className="max-w-[520px] text-sm leading-relaxed text-mute">
+                Illustrative rates for this calculator. Final rates and terms are confirmed at launch.
+                Staking rewards are not guaranteed, and the value of crypto assets can go down as well as up.
+              </p>
+            </div>
+
+            <div className="flex min-w-0 flex-[1_1_340px] flex-col justify-between gap-7 rounded-[18px] border border-gold/30 bg-[radial-gradient(circle_at_80%_0%,rgba(245,176,46,.25),transparent_55%),radial-gradient(circle_at_0%_100%,rgba(47,123,255,.35),transparent_60%),#08153A] p-8 text-white">
+              <div className="flex flex-col gap-2">
+                <span className="label !text-[#9FB0DA]">Estimated rewards per year</span>
+                <span className="num break-words font-display text-[clamp(2.1rem,5vw,3.25rem)] font-bold leading-[1.1] text-gold-light">
+                  {fmt(yearly)}
+                </span>
+                <span className="text-sm font-semibold text-[#9FB0DA]">DMDR</span>
+              </div>
+              <dl className="flex flex-col">
+                {[
+                  ["Per day", `${fmt(daily)} DMDR`],
+                  ["Staked", `${amount.toLocaleString("en-US")} DMDR`],
+                  ["Term", t.term],
+                  ["Example rate", `${t.apy}% APY`],
+                ].map(([k, v], i) => (
+                  <div key={k} className="flex justify-between gap-4 border-t border-white/10 py-3.5">
+                    <dt className="text-[#9FB0DA]">{k}</dt>
+                    <dd className={`num text-right font-semibold ${i === 3 ? "text-teal" : ""}`}>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+              <a className="btn btn-gold" href={APP_URL}>
+                Start staking
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
