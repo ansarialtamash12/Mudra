@@ -16,7 +16,10 @@ export default function Staking() {
   const daily = yearly / 365;
 
   return (
-    <section id="staking" className="bg-gradient-to-b from-ink via-ink-2 to-ink py-20 md:py-28">
+    <section
+      id="staking"
+      className="bg-gradient-to-b from-ink via-ink-2 to-ink py-20 md:py-28 transition-colors duration-300"
+    >
       <div className="wrap flex flex-col gap-14">
         <Reveal className="flex max-w-[760px] flex-col gap-4">
           <span className="eyebrow">Staking program</span>
@@ -28,7 +31,7 @@ export default function Staking() {
         </Reveal>
 
         <Reveal>
-          <div className="flex flex-wrap items-stretch gap-10 rounded-[20px] border border-line/10 bg-gradient-to-br from-surface to-ink-2 shadow-[0_20px_60px_rgba(10,24,58,0.08)] dark:shadow-none p-5 sm:p-8 lg:p-10">
+          <div className="flex flex-wrap items-stretch gap-10 rounded-[20px] border border-line/10 bg-gradient-to-br from-surface to-ink-2 shadow-[0_20px_60px_rgba(10,24,58,0.08)] dark:shadow-none p-5 sm:p-8 lg:p-10 transition-colors duration-300">
             <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-7">
               <div className="flex flex-col gap-3.5">
                 <span className="label">1. Choose a term</span>
@@ -45,8 +48,12 @@ export default function Staking() {
                           : "border-line/10 bg-ink-2 hover:border-gold/50"
                       }`}
                     >
-                      <div className="font-display text-[17px] font-bold">{x.label}</div>
-                      <div className="num mt-1 text-sm font-semibold text-gold-ink">{x.apy}% APY</div>
+                      <div className="font-display text-[17px] font-bold text-fg">
+                        {x.label}
+                      </div>
+                      <div className="num mt-1 text-sm font-semibold text-gold-ink">
+                        {x.apy}% APY
+                      </div>
                       <div className="mt-0.5 text-[13px] text-mute">{x.lock}</div>
                     </button>
                   ))}
@@ -64,8 +71,8 @@ export default function Staking() {
                       aria-pressed={amount === a}
                       className={`num rounded-full border px-5 py-2.5 font-semibold transition ${
                         amount === a
-                          ? "border-gold bg-gold/10"
-                          : "border-line/10 bg-ink-2 hover:border-gold/50"
+                          ? "border-gold bg-gold/10 text-fg"
+                          : "border-line/10 bg-ink-2 text-fg hover:border-gold/50"
                       }`}
                     >
                       {a.toLocaleString("en-US")}
@@ -80,28 +87,50 @@ export default function Staking() {
               </p>
             </div>
 
-            <div className="flex min-w-0 flex-[1_1_340px] flex-col justify-between gap-7 rounded-[18px] border border-gold/30 bg-[radial-gradient(circle_at_80%_0%,rgba(245,176,46,.25),transparent_55%),radial-gradient(circle_at_0%_100%,rgba(47,123,255,.35),transparent_60%),#08153A] p-8 text-white">
-              <div className="flex flex-col gap-2">
-                <span className="label !text-[#9FB0DA]">Estimated rewards per year</span>
-                <span className="num break-words font-display text-[clamp(2.1rem,5vw,3.25rem)] font-bold leading-[1.1] text-gold-light">
+            {/* Right panel: Theme-aware */}
+            <div className="relative flex min-w-0 flex-[1_1_340px] flex-col justify-between gap-7 overflow-hidden rounded-[18px] border border-gold/30 bg-white p-8 text-gray-900 dark:bg-[#08153A] dark:text-white transition-colors duration-300">
+              
+              {/* Decorative glow */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(245,176,46,.20),transparent_55%),radial-gradient(circle_at_0%_100%,rgba(47,123,255,.12),transparent_60%)] dark:bg-[radial-gradient(circle_at_80%_0%,rgba(245,176,46,.25),transparent_55%),radial-gradient(circle_at_0%_100%,rgba(47,123,255,.35),transparent_60%)]" />
+
+              <div className="relative flex flex-col gap-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#9FB0DA]">
+                  Estimated rewards per year
+                </span>
+                <span className="num break-words font-display text-[clamp(2.1rem,5vw,3.25rem)] font-bold leading-[1.1] text-gold-ink dark:text-gold-light">
                   {fmt(yearly)}
                 </span>
-                <span className="text-sm font-semibold text-[#9FB0DA]">DMDR</span>
+                <span className="text-sm font-semibold text-gray-500 dark:text-[#9FB0DA]">
+                  DMDR
+                </span>
               </div>
-              <dl className="flex flex-col">
+
+              <dl className="relative flex flex-col">
                 {[
                   ["Per day", `${fmt(daily)} DMDR`],
                   ["Staked", `${amount.toLocaleString("en-US")} DMDR`],
                   ["Term", t.term],
                   ["Example rate", `${t.apy}% APY`],
                 ].map(([k, v], i) => (
-                  <div key={k} className="flex justify-between gap-4 border-t border-white/10 py-3.5">
-                    <dt className="text-[#9FB0DA]">{k}</dt>
-                    <dd className={`num text-right font-semibold ${i === 3 ? "text-teal" : ""}`}>{v}</dd>
+                  <div
+                    key={k}
+                    className="flex justify-between gap-4 border-t border-gray-200 py-3.5 dark:border-white/10"
+                  >
+                    <dt className="text-gray-500 dark:text-[#9FB0DA]">{k}</dt>
+                    <dd
+                      className={`num text-right font-semibold ${
+                        i === 3
+                          ? "text-teal"
+                          : "text-gray-900 dark:text-white"
+                      }`}
+                    >
+                      {v}
+                    </dd>
                   </div>
                 ))}
               </dl>
-              <a className="btn btn-gold" href={APP_URL}>
+
+              <a className="btn btn-gold relative" href={APP_URL}>
                 Start staking
               </a>
             </div>

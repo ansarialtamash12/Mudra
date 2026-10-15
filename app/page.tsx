@@ -9,7 +9,10 @@ import Roadmap from "@/components/Roadmap";
 import Staking from "@/components/Staking";
 import Ticker from "@/components/Ticker";
 import Tokenomics from "@/components/Tokenomics";
-
+import VideBannerSection from "@/components/VideoBannerSection";
+import FeatureTabsSection from "@/components/FutureStick";
+import Testimonials from "@/components/Testimonials";
+// import BentoFeatures from "@/components/BentoFeatures";
 export default function Home() {
   return (
     <>
@@ -17,11 +20,15 @@ export default function Home() {
       <main>
         <Hero />
         <Ticker />
+        {/* <BentoFeatures /> */}
         <About />
+        <FeatureTabsSection />
         <CardSection />
+        <VideBannerSection />
         <Tokenomics />
         <Staking />
         <Roadmap />
+        <Testimonials />
         <Faq />
         <Cta />
       </main>

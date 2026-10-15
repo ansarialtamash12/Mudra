@@ -21,11 +21,12 @@ export function Logo({ small = false }: { small?: boolean }) {
     </span>
   );
 }
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/10 bg-ink/75 backdrop-blur-lg">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-line/10 bg-ink/75 backdrop-blur-lg">
       <div className="wrap flex h-[64px] items-center justify-between gap-3 px-4 sm:h-[72px] sm:gap-6 sm:px-6 lg:px-8">
         {/* Logo */}
         <a href="#top" aria-label="Mudra home" className="shrink-0">
@@ -49,7 +50,6 @@ export default function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle />
 
-          {/* Get started — mobile pe hide (mobile menu mein aa jayega) */}
           <a
             className="btn btn-gold !min-h-[40px] !px-4 !text-[14px] hidden sm:inline-flex sm:!min-h-[44px] sm:!px-6 sm:!text-[15px]"
             href={APP_URL}
@@ -57,7 +57,6 @@ export default function Navbar() {
             Get started
           </a>
 
-          {/* Hamburger */}
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center rounded-full border border-line/15 lg:hidden sm:h-11 sm:w-11"
@@ -88,7 +87,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <nav
-          className="wrap flex flex-col gap-1 pb-4 lg:hidden"
+          className="wrap flex flex-col gap-1 pb-4 lg:hidden bg-ink/95 backdrop-blur-lg"
           aria-label="Mobile"
         >
           {navLinks.map((l) => (
@@ -102,7 +101,6 @@ export default function Navbar() {
             </a>
           ))}
 
-          {/* ✅ Mobile pe Get started button menu ke andar */}
           <a
             href={APP_URL}
             onClick={() => setOpen(false)}

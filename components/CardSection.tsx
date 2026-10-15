@@ -30,25 +30,29 @@ export default function CardSection() {
           </div>
         </Reveal>
 
-        <Reveal from="right" className="min-w-0 flex-[1_1_400px]">
-          <div className="relative mx-auto h-[380px] w-full max-w-[460px]">
-            <div className="absolute left-1/2 top-1/2 -ml-[170px] -mt-[120px] aspect-[1.586] w-[min(380px,86%)] translate-x-[34px] translate-y-[26px] rotate-[9deg] rounded-3xl border border-white/10 bg-gradient-to-br from-[#1E4FD6] to-[#0A1636] opacity-70" />
-            <div className="absolute left-1/2 top-1/2 -ml-[170px] -mt-[120px] aspect-[1.586] w-[min(380px,86%)] animate-floaty">
-              {/* the physical card stays blue and gold in both themes */}
-              <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-[radial-gradient(circle_at_85%_0%,rgba(245,176,46,.45),transparent_50%),linear-gradient(145deg,#2563EB,#0B2A8A_55%,#06143F)] p-6 text-white shadow-[0_40px_80px_rgba(6,20,63,.45),0_0_60px_rgba(47,123,255,.25)] after:absolute after:inset-0 after:animate-sheen after:bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.18)_50%,transparent_65%)] after:content-['']">
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-xl font-extrabold">Mudra</span>
-                  <Icon name="contactless" size={26} className="text-gold-light" />
-                </div>
-                <div className="h-[38px] w-[50px] rounded-lg bg-gradient-to-br from-[#FFEDB5] via-gold to-gold-dark" />
-                <div className="flex items-end justify-between">
-                  <span className="num text-[15px] tracking-[0.18em] text-white/80">•••• •••• ••••</span>
-                  <span className="text-xs font-bold tracking-[0.2em] text-gold-light">DMDR</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
+      <Reveal from="right" className="min-w-0 flex-[1_1_400px]">
+  <div className="relative mx-auto h-[380px] w-full max-w-[460px]">
+    {/* background card */}
+    <div className="absolute left-1/2 top-1/2 -ml-[170px] -mt-[120px] aspect-[1.586] w-[min(380px,86%)] translate-x-[34px] translate-y-[26px] rotate-[9deg] rounded-3xl border border-white/10 bg-gradient-to-br from-[#1E4FD6] to-[#0A1636] opacity-70" />
+    
+    {/* 2. Front floating container */}
+    <div className="absolute left-1/2 top-1/2 -ml-[170px] -mt-[120px] aspect-[1.586] w-[min(380px,86%)] animate-floaty">
+      
+      {/* card IMAGE*/}
+      <img 
+        src="login-card-img.png" 
+        alt="Mudra Card" 
+        className="relative h-full w-full rounded-3xl border border-white/20 object-cover shadow-[0_40px_80px_rgba(6,20,63,.45),0_0_60px_rgba(47,123,255,.25)]"
+      />
+
+      {/* Optional: Agar aap chahte hain ki image ke upar bhi woh shine (sheen) wala effect aaye, toh yeh overlay use karein */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
+        <div className="absolute inset-0 animate-sheen bg-[linear-gradient(110deg,transparent_35%,rgba(255,255,255,.18)_50%,transparent_65%)]" />
+      </div>
+
+    </div>
+  </div>
+</Reveal>
       </div>
     </section>
   );
