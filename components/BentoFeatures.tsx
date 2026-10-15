@@ -12,7 +12,7 @@ function IconBox({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Reusable Card Wrapper (Theme-aware colors from previous components)
+// Reusable Card Wrapper
 function Card({
   children,
   className = "",

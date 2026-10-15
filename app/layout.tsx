@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_Devanagari, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
+// Components
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 // Body: Inter. Headings: Plus Jakarta Sans. Devanagari only for the coin's back face.
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const jakarta = Plus_Jakarta_Sans({
@@ -36,7 +40,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-ink font-sans text-fg antialiased w-full overflow-x-hidden">{children}</body>
+      <body className="bg-ink font-sans text-fg antialiased w-full overflow-x-clip">
+        <Navbar />
+
+        <main >
+          {children}
+        </main>
+
+        <Footer />
+      </body>
     </html>
   );
 }

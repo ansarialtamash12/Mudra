@@ -12,13 +12,15 @@ interface TabData {
 
 // 2. Tabs ka Data 
 const TABS_DATA: TabData[] = [
-  {
-    id: "transfers",
-    label: "Transfers",
-    title: "Fast & Secure Stablecoin Transfers",
-    description: "Send and receive funds instantly using secure stablecoin rails with low-cost global payments. Our global transfer system allows you to send crypto and have the recipient receive local currency, with hassle-free protected transactions to any recipient worldwide. Fast, secure, and built for everyday people and businesses.",
-    imageSrc: "Tower.webp",
+   {
+    id: "credit",
+    label: "Credit",
+    title: "Crypto-Backed Credit",
+    description: "Access instant funds without selling your crypto. Use your digital assets as collateral to secure flexible credit lines, with no credit checks and repayment terms that work for you. Unlock liquidity while maintaining your crypto position and enjoying potential future appreciation.",
+    imageSrc: "currency.webp",
   },
+
+ 
   {
     id: "multi-currency",
     label: "Multi-Currency",
@@ -40,13 +42,14 @@ const TABS_DATA: TabData[] = [
     description: "Send crypto, receive local currency. Our international transfer system enables hassle-free protected transactions to any recipient worldwide. Experience low-cost global transfers that settle in minutes, not days, with complete transparency and security.",
     imageSrc: "global.webp",
   },
-  {
-    id: "credit",
-    label: "Credit",
-    title: "Crypto-Backed Credit",
-    description: "Access instant funds without selling your crypto. Use your digital assets as collateral to secure flexible credit lines, with no credit checks and repayment terms that work for you. Unlock liquidity while maintaining your crypto position and enjoying potential future appreciation.",
-    imageSrc: "currency.webp",
+   {
+    id: "transfers",
+    label: "Transfers",
+    title: "Fast & Secure Stablecoin Transfers",
+    description: "Send and receive funds instantly using secure stablecoin rails with low-cost global payments. Our global transfer system allows you to send crypto and have the recipient receive local currency, with hassle-free protected transactions to any recipient worldwide. Fast, secure, and built for everyday people and businesses.",
+    imageSrc: "Tower.webp",
   },
+ 
   {
     id: "earn",
     label: "Earn",
@@ -57,8 +60,8 @@ const TABS_DATA: TabData[] = [
 ];
 
 export default function FeatureTabsSection() {
-  const [activeTab, setActiveTab] = useState<string>("transfers");
-  const [displayedTab, setDisplayedTab] = useState<string>("transfers");
+  const [activeTab, setActiveTab] = useState<string>("credit");
+  const [displayedTab, setDisplayedTab] = useState<string>("credit");
   const [isFading, setIsFading] = useState<boolean>(false);
 
   const handleTabClick = (id: string) => {
@@ -106,10 +109,9 @@ export default function FeatureTabsSection() {
       </div>
 
       {/* ================= MAIN CONTENT BOX (FIXED HEIGHT & WIDTH) ================= */}
-      {/* Yahan lg:h-[600px] add kiya gaya hai taaki desktop pe height fix rahe */}
       <div className="grid grid-cols-1 lg:grid-cols-2 rounded-[2rem] overflow-hidden bg-white dark:bg-[#0A1636] border border-gray-200 dark:border-white/10 shadow-xl lg:h-[600px]">
         
-        {/* LEFT SIDE: Image (Height fixed parent ke hisaab se h-full) */}
+        {/* LEFT SIDE: Image  */}
         <div className={`relative w-full h-[300px] sm:h-[400px] lg:h-full transition-opacity duration-300 ease-in-out ${isFading ? 'opacity-0' : 'opacity-100'}`}>
           <img
             src={currentTab.imageSrc}
@@ -118,7 +120,7 @@ export default function FeatureTabsSection() {
           />
         </div>
 
-        {/* RIGHT SIDE: Text Content (Agar text bada ho toh scroll aayega, design nahi tootega) */}
+        {/* RIGHT SIDE: Text Content */}
         <div className={`flex flex-col justify-center p-8 md:p-12 lg:p-16 lg:overflow-y-auto transition-all duration-300 ease-in-out transform ${isFading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
           <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
             {currentTab.title}

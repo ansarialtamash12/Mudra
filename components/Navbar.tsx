@@ -25,11 +25,15 @@ export function Logo({ small = false }: { small?: boolean }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  // Hash links ko home page ke saath prefix karo so they work from any page
+  const getHref = (href: string) =>
+    href.startsWith("#") ? `/${href}` : href;
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-line/10 bg-ink/75 backdrop-blur-lg">
       <div className="wrap flex h-[64px] items-center justify-between gap-3 px-4 sm:h-[72px] sm:gap-6 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <a href="#top" aria-label="Mudra home" className="shrink-0">
+        {/* Logo — always goes to home */}
+        <a href="/" aria-label="Mudra home" className="shrink-0">
           <Logo />
         </a>
 
@@ -38,7 +42,7 @@ export default function Navbar() {
           {navLinks.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={getHref(l.href)}
               className="text-[15px] font-medium text-fg/75 transition hover:text-gold-ink"
             >
               {l.label}
@@ -93,7 +97,7 @@ export default function Navbar() {
           {navLinks.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={getHref(l.href)}
               onClick={() => setOpen(false)}
               className="rounded-xl px-3 py-3 text-base font-medium text-fg/75 hover:bg-line/5"
             >
