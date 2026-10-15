@@ -12,19 +12,19 @@ import Tokenomics from "@/components/Tokenomics";
 import VideBannerSection from "@/components/VideoBannerSection";
 import FeatureTabsSection from "@/components/FutureStick";
 import Testimonials from "@/components/Testimonials";
-// import BentoFeatures from "@/components/BentoFeatures";
+import ContractAddress from "@/components/ContractAddress";
 export default function Home() {
   return (
     <>
       <main>
         <Hero />
         <Ticker />
-        {/* <BentoFeatures /> */}
         <About />
         <FeatureTabsSection />
         <CardSection />
         <VideBannerSection />
         <Tokenomics />
+        <ContractAddress />
         <Staking />
         <Roadmap />
         <Testimonials />

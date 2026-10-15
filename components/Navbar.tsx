@@ -6,17 +6,27 @@ import ThemeToggle from "./ThemeToggle";
 import { APP_URL, navLinks } from "@/lib/content";
 
 export function Logo({ small = false }: { small?: boolean }) {
+  const heightClass = small ? "h-[36px] sm:h-[42px]" : "h-[42px] sm:h-[52px]";
+
   return (
     <span className="flex items-center gap-2 sm:gap-3">
+      {/* Light theme logo — dark mode pe hide */}
+      <Image
+         src="/Mudralogo2.png"
+        alt="Mudra logo"
+        width={120}
+        height={120}
+        priority
+        className={`w-auto object-contain dark:hidden ${heightClass}`}
+      />
+      {/* Dark theme logo — light mode pe hide */}
       <Image
         src="/Mudralogo2.png"
         alt="Mudra logo"
         width={120}
         height={120}
         priority
-        className={`w-auto object-contain ${
-          small ? "h-[36px] sm:h-[42px]" : "h-[42px] sm:h-[52px]"
-        }`}
+        className={`hidden w-auto object-contain dark:block ${heightClass}`}
       />
     </span>
   );

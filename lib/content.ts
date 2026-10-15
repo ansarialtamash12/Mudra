@@ -77,10 +77,10 @@ export const allocation = [
 ];
 
 export const tokenFacts = [
-  { label: "Token", value: "Mudra (DMDR)", placeholder: false },
-  { label: "Network", value: "[Add network]", placeholder: true }, // DRAFT
-  { label: "Total supply", value: "[Add total supply]", placeholder: true }, // DRAFT
-  { label: "Utility", value: "Staking, governance, rewards", placeholder: false },
+  { label: "Token", value: "Digital MDR (DMDR)", icon: "coin" },
+  { label: "Network", value: "BEP20", icon: "network" },
+  { label: "Total Supply", value: "300,000,000 DMDR", icon: "supply", placeholder: true },
+  { label: "Utility", value: "Staking Rewards, Token Utility, Digital Payments, Instant Transactions, Global Payments", icon: "utility" },
 ];
 
 // DRAFT rates and terms: illustrative only.
